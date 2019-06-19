@@ -1,12 +1,15 @@
-from flask import Flask
-from flask import request
-from flask import jsonify
+# -*- coding: utf-8 -*-
+"""
+처음에 user_id를 가지고 있다가, API 형식으로 Bot에서 계산한 숫자를 전달하는 역할입니다.
+"""
+
+from flask import Flask, request, jsonify
 
 from bot import Bot
 from bot import is_valid_format
 
-app = Flask(__name__)
 
+app = Flask(__name__)
 user_history = {}
 
 def message_to_json(message):
@@ -73,6 +76,7 @@ def question():
     user_history[user_id] = bot
 
     return message_to_json(bot.get_next_question())
+
 
 if __name__ == '__main__':
     app.run(port=8000)

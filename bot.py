@@ -1,4 +1,8 @@
-''
+# -*- coding: utf-8 -*-
+"""
+사전에 만들어진 tree를 가지고 있다가, 해당 전략에 따라 다음 물어볼 질문을 찾고 이를 통해 답을 찾는 역할입니다.
+"""
+
 import re
 import numpy as np
 from itertools import combinations, permutations
@@ -17,13 +21,12 @@ score_dict = {(0, 0): 0,
               (2, 1): 10,
               (2, 2): 11,
               (3, 0): 12,
-              (4, 0): -1,
+              (4, 0): -1
              }
 
 
 def is_valid_format(input_string):
     return re.match('[0-4]S[0-4]B', input_string.upper())
-
 
 def get_score(guess, answer):
     strikes = len([1 for g, a in zip(guess, answer) if g == a])
@@ -55,13 +58,11 @@ def load_tree(algo_type='crush'):
                  'child': line[6:-7] + line[-6:-3] + line[-1:]} for line in data]
     return tree
 
-
 def get_all_candidates():
     candidates = []
     for comb in combinations(range(10), 4):
         candidates.extend([''.join(num) for num in permutations([str(i) for i in comb])])
     return candidates
-
 
 def reduce_candidates(candidates, guess, strikes, balls):
     candidates = set(candidates)
@@ -69,7 +70,6 @@ def reduce_candidates(candidates, guess, strikes, balls):
                 get_score(guess, num)['stringify'] == '{}S{}B'.format(strikes, balls)]
     candidates = candidates & set(possible)
     return candidates
-
 
 def reduce_candidates_with_multiple_answers(candidates, answers):
     for guess, (strikes, balls) in answers:

@@ -1,4 +1,5 @@
 ''
+import re
 import numpy as np
 from itertools import combinations, permutations
 
@@ -21,11 +22,7 @@ score_dict = {(0, 0): 0,
 
 
 def is_valid_format(input_string):
-    if len(input_string) != 4:
-        return False
-    if (not input_string[0].isdigit()) | (not input_string[2].isdigit()):
-        return False
-    return True
+    return re.match('[0-4]S[0-4]B', input_string.upper())
 
 
 def get_score(guess, answer):
@@ -46,7 +43,7 @@ def load_tree(algo_type='crush'):
     else:
         raise ValueError('{} is not supported'.format(algo_type))
 
-    with open('../tree/{}'.format(fname), 'r') as f:
+    with open('tree/{}'.format(fname), 'r') as f:
         _ = f.readline()
         data = [line.split() for line in f]
         tree = [{'id': line[0],
@@ -94,13 +91,13 @@ class Bot:
 
     def save_answer(self, guess, strikes, balls):
         if strikes == 4:
+            self.solved = True
             return False
 
         self.answers.append([guess, (strikes, balls)])
         next_question = self.current['child'][score_dict[(strikes, balls)]]
         try:
             self.current = self.tree[int(next_question)]
-            return next_question
         except:
             return False
         return True

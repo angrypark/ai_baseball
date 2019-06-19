@@ -20,7 +20,7 @@
 
 페이스북 메신저로 직접 게임해볼 수 있습니다. 링크는 다음과 같습니다.
 
-> [m.me/aibaseball](m.me/aibaseball)
+> [m.me/aibaseball](https://m.me/aibaseball)
 
 
 

@@ -46,7 +46,7 @@ def load_tree(algo_type='crush'):
     else:
         raise ValueError('{} is not supported'.format(algo_type))
 
-    with open('Desktop/bcMastermind30jan2017ver3.1/bcw/{}'.format(fname), 'r') as f:
+    with open('../tree/{}'.format(fname), 'r') as f:
         _ = f.readline()
         data = [line.split() for line in f]
         tree = [{'id': line[0],

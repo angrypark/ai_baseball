@@ -53,6 +53,7 @@ def question():
                 }]
             })
 
+        answers = '\n'.join([str(answer) for answer in user_history[user_id].answers])
         user_history[user_id] = Bot()
         return jsonify({
             "messages": [{
@@ -60,7 +61,7 @@ def question():
                     "type": "template",
                     "payload": {
                         "template_type": "button",
-                        "text": "뭔가가 잘못되었어요. 본인의 답변이 틀린지 확인하신 후 다시 시작해보세요.",
+                        "text": "뭔가가 잘못되었어요. 본인의 답변이 틀린지 확인하신 후 다시 시작해보세요.\n" + answers,
                         "buttons": [
                             {
                                 "type": "show_block",

@@ -95,12 +95,12 @@ class Bot:
             return False
 
         self.answers.append([guess, (strikes, balls)])
-        next_question = self.current['child'][score_dict[(strikes, balls)]]
         try:
+            next_question = self.current['child'][score_dict[(strikes, balls)]]
             self.current = self.tree[int(next_question)]
+            return True
         except:
             return False
-        return True
 
     def get_next_question(self):
         return self.current['turn']

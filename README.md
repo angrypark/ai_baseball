@@ -26,4 +26,5 @@
 
 ## Author
 
-박성남, sungnam1108@naver.com, Yonsei University
+Sungnam Park, Yonsei University (sungnam1108@naver.com)
+
